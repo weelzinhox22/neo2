@@ -831,41 +831,7 @@ const Index = () => {
             {[
               { question: "Qual a frequência cardíaca normal esperada para 1 ano?", answer: "25 - 30 RPM" },
               { question: "Quais são os tipos de RN por idade gestacional?", answer: "Pré-Termo (<37 semanas), Termo (38-41 semanas), Pós-Termo (≥42 semanas)" },
-              { question: "O que significa RN-EBP?", answer: "Recém-nascido de extremo baixo peso (inferior a 1.000g)" }, // Verificar preferência do usuário e do sistema ao carregar
-                useEffect(() => {
-                  // Verificar localStorage primeiro
-                  const savedTheme = localStorage.getItem('theme');
-              
-                  if (savedTheme) {
-                    setActiveTheme(savedTheme as 'light' | 'dark');
-                    if (savedTheme === 'dark') {
-                      document.documentElement.classList.add('dark');
-                    } else {
-                      document.documentElement.classList.remove('dark');
-                    }
-                  } else {
-                    // Verificar preferência do sistema
-                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    if (prefersDark) {
-                      setActiveTheme('dark');
-                      document.documentElement.classList.add('dark');
-                      localStorage.setItem('theme', 'dark'); // Saves dark preference if system is dark
-                    }
-                    // If no saved theme and system is not dark, it implicitly stays light (the initial state)
-                  }
-              
-                  // Adicionar listener para mudanças na preferência do sistema
-                  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-                  const handleChange = (e: MediaQueryListEvent) => {
-                    const newTheme = e.matches ? 'dark' : 'light';
-                    setActiveTheme(newTheme);
-                    document.documentElement.classList.toggle('dark', e.matches);
-                    localStorage.setItem('theme', newTheme); // Saves based on system change
-                  };
-              
-                  mediaQuery.addEventListener('change', handleChange);
-                  return () => mediaQuery.removeEventListener('change', handleChange);
-                }, []);
+              { question: "O que significa RN-EBP?", answer: "Recém-nascido de extremo baixo peso (inferior a 1.000g)" },
               { question: "Qual a frequência respiratória normal de um prematuro?", answer: "40-50 respirações por minuto" },
               { question: "Por que a tapotagem é contraindicada em RNs?", answer: "Pode causar hipoxemia, fraturas de costelas e lesões cerebrais" },
               { question: "Quais são os objetivos da fisioterapia na UTINeo?", answer: "Otimizar função respiratória, prevenir complicações, favorecer desmame ventilatório" },
