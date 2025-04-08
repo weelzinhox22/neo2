@@ -83,37 +83,14 @@ const Layout = ({ children }: LayoutProps) => {
 
   // Verificar preferência do usuário e do sistema ao carregar
   useEffect(() => {
-    // Verificar localStorage primeiro
-    const savedTheme = localStorage.getItem('theme');
-    
-    if (savedTheme) {
-      setActiveTheme(savedTheme as 'light' | 'dark');
-      if (savedTheme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    } else {
-      // Verificar preferência do sistema
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (prefersDark) {
-        setActiveTheme('dark');
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      }
-    }
-    
-    // Adicionar listener para mudanças na preferência do sistema
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (e: MediaQueryListEvent) => {
-      const newTheme = e.matches ? 'dark' : 'light';
-      setActiveTheme(newTheme);
-      document.documentElement.classList.toggle('dark', e.matches);
-      localStorage.setItem('theme', newTheme);
-    };
-    
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
+    // Force light theme on initial load
+    setActiveTheme('light');
+    document.documentElement.classList.remove('dark');
+    // localStorage.removeItem('theme'); // Optional: Uncomment to clear any previously saved theme
+
+    // Note: The theme toggle button will still function and save to localStorage for the session,
+    // but the next page load will always start in light mode.
+    // We removed the system preference listener.
   }, []);
 
   // Enhanced navigation items with better icons and descriptions
