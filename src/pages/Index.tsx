@@ -454,7 +454,7 @@ const Index = () => {
       {/* Classificação do RN */}
       <AnimatedSection className="container mx-auto px-6 py-16" animation="fadeIn">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gradient">Classificação do Recém-Nascido</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gradient">Classificação do Recém-Nascido</h2>
           <div className="w-20 h-1 bg-brand-500 mx-auto mb-6"></div>
           <p className="text-gray-700">
             A classificação do recém-nascido é fundamental para determinar os cuidados necessários e o acompanhamento adequado.
@@ -474,7 +474,7 @@ const Index = () => {
                 <div className="bg-blue-50 p-4 rounded-lg">
                   <p className="font-medium text-blue-700">Pré-Termo (PT)</p>
                   <p className="text-gray-700">Menos de 37 semanas e 6 dias</p>
-                </div>
+              </div>
                 <div className="bg-green-50 p-4 rounded-lg">
                   <p className="font-medium text-green-700">Termo (T)</p>
                   <p className="text-gray-700">Entre 38 e 41 semanas</p>
@@ -508,10 +508,10 @@ const Index = () => {
                 </div>
               </div>
             </AnimatedSection>
-          </div>
-
+              </div>
+              
           <div className="space-y-8">
-            <AnimatedSection animation="slideLeft" delay={0.4} className="bg-white p-6 rounded-xl shadow-md border-l-4 border-teal-500">
+            <AnimatedSection animation="slideRight" delay={0.4} className="bg-white p-6 rounded-xl shadow-md border-l-4 border-teal-500">
               <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -522,19 +522,19 @@ const Index = () => {
                 <div className="bg-teal-50 p-4 rounded-lg">
                   <p className="font-medium text-teal-700">RN-BP</p>
                   <p className="text-gray-700">Recém-nascido de baixo peso (inferior a 2.000g)</p>
-                </div>
+              </div>
                 <div className="bg-cyan-50 p-4 rounded-lg">
                   <p className="font-medium text-cyan-700">RN-MBP</p>
                   <p className="text-gray-700">Recém-nascido de muito baixo peso (inferior a 1.500g)</p>
-                </div>
+            </div>
                 <div className="bg-indigo-50 p-4 rounded-lg">
                   <p className="font-medium text-indigo-700">RN-EBP</p>
                   <p className="text-gray-700">Recém-nascido de extremo baixo peso (inferior a 1.000g)</p>
-                </div>
+          </div>
               </div>
             </AnimatedSection>
 
-            <AnimatedSection animation="slideLeft" delay={0.5} className="bg-white p-6 rounded-xl shadow-md border-l-4 border-amber-500">
+            <AnimatedSection animation="slideRight" delay={0.5} className="bg-white p-6 rounded-xl shadow-md border-l-4 border-amber-500">
               <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 <svg className="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
@@ -562,8 +562,8 @@ const Index = () => {
                   <p className="font-medium text-rose-700">Adolescente</p>
                   <p className="text-gray-700">Acima de 13 anos até 18 anos</p>
                 </div>
-              </div>
-            </AnimatedSection>
+            </div>
+          </AnimatedSection>
           </div>
         </div>
       </AnimatedSection>
@@ -575,7 +575,7 @@ const Index = () => {
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">Organização e Funcionamento da UTIneo</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-500 mx-auto rounded-full"></div>
           </div>
-
+          
           <div className="grid md:grid-cols-2 gap-8">
             {/* Coluna Esquerda */}
             <div className="space-y-8">
@@ -586,8 +586,8 @@ const Index = () => {
                     <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
-                  </div>
-                  <div>
+              </div>
+                    <div>
                     <h3 className="text-2xl font-bold text-gray-800 mb-4">Alojamento Conjunto Tardio (ACT)</h3>
                     <div className="space-y-6">
                       <div className="bg-emerald-50 p-6 rounded-xl">
@@ -604,10 +604,10 @@ const Index = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                               </svg>
                               <span className="text-gray-700">{item}</span>
-                            </li>
+                  </li>
                           ))}
                         </ul>
-                      </div>
+                    </div>
                       
                       <div className="bg-gray-50 p-6 rounded-xl">
                         <h4 className="font-semibold text-gray-800 mb-3">Tempo de Internação:</h4>
@@ -623,11 +623,11 @@ const Index = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                               </svg>
                               <span className="text-gray-700">{item}</span>
-                            </li>
+                  </li>
                           ))}
                         </ul>
                         <p className="mt-4 text-gray-700 font-medium">Após a alta, a criança é acompanhada em ambulatório.</p>
-                      </div>
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -667,7 +667,7 @@ const Index = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                               </svg>
                               <span className="text-gray-700">{item}</span>
-                            </li>
+                  </li>
                           ))}
                         </ul>
                       </div>
@@ -684,7 +684,7 @@ const Index = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
                   </div>
-                  <div>
+                    <div>
                     <h3 className="text-2xl font-bold text-gray-800 mb-4">Alojamento Conjunto (AC)</h3>
                     <p className="text-gray-600 mb-6">Sistema hospitalar em que a mãe e RN se localizam na mesma área física desde o nascimento até a alta hospitalar, devendo permanecer juntos 24h/dia.</p>
                     
@@ -749,13 +749,13 @@ const Index = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                               </svg>
                               <span className="text-gray-700">{item}</span>
-                            </li>
+                  </li>
                           ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
               </AnimatedSection>
             </div>
           </div>
@@ -765,7 +765,7 @@ const Index = () => {
       {/* UTI Neonatal */}
       <AnimatedSection className="container mx-auto px-6 py-16" animation="fadeIn">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gradient">UTI Neonatal e Equipamentos</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gradient">UTI Neonatal e Equipamentos</h2>
           <div className="w-20 h-1 bg-brand-500 mx-auto mb-6"></div>
           <p className="text-gray-700">
             A UTI Neonatal é um ambiente especializado que concentra recursos materiais e humanos para garantir o melhor cuidado aos recém-nascidos.
@@ -781,10 +781,10 @@ const Index = () => {
                 </svg>
                 Visão Geral
               </h3>
-              <p className="text-gray-700 mb-6">
-                A UTI é o setor que concentra recursos materiais e humanos especializados para garantir observação rigorosa e tratamento adequado aos RNs com risco de morte ou sequelas que possam interferir no seu desenvolvimento. A área deve ser de 5 m² por RN, com uma área específica para isolamento.
-              </p>
-              
+            <p className="text-gray-700 mb-6">
+              A UTI é o setor que concentra recursos materiais e humanos especializados para garantir observação rigorosa e tratamento adequado aos RNs com risco de morte ou sequelas que possam interferir no seu desenvolvimento. A área deve ser de 5 m² por RN, com uma área específica para isolamento.
+            </p>
+            
               <div className="bg-blue-50 p-4 rounded-lg">
                 <h4 className="font-medium text-blue-700 mb-3">Equipamentos Necessários na UTI</h4>
                 <ul className="space-y-2 text-gray-700">
@@ -836,7 +836,7 @@ const Index = () => {
                     </svg>
                     Foco de luz
                   </li>
-                </ul>
+            </ul>
               </div>
             </AnimatedSection>
 
@@ -874,7 +874,7 @@ const Index = () => {
                       </svg>
                       Malformações
                     </li>
-                  </ul>
+            </ul>
                 </div>
                 <div className="bg-purple-50 p-4 rounded-lg">
                   <ul className="space-y-2 text-gray-700">
@@ -913,16 +913,16 @@ const Index = () => {
               </div>
             </AnimatedSection>
           </div>
-
+          
           <div className="space-y-8">
             <AnimatedSection animation="slideRight" delay={0.4} className="bg-white p-6 rounded-xl shadow-md border-l-4 border-teal-500">
               <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
-                Particularidades Fisiológicas
-              </h3>
-              
+                  Particularidades Fisiológicas
+                </h3>
+                
               <div className="space-y-6">
                 <div className="bg-teal-50 p-4 rounded-lg">
                   <h4 className="font-medium text-teal-700 mb-2">Relação entre Perímetro Cefálico (PC) e Perímetro Torácico (PT)</h4>
@@ -957,7 +957,7 @@ const Index = () => {
                       </svg>
                       Cerca de nove meses: PC é menor que PT
                     </li>
-                  </ul>
+                </ul>
                 </div>
 
                 <div className="bg-cyan-50 p-4 rounded-lg">
@@ -999,8 +999,8 @@ const Index = () => {
                       </svg>
                       Adolescente: 12 - 20 rpm
                     </li>
-                  </ul>
-                </div>
+                </ul>
+              </div>
 
                 <div className="bg-indigo-50 p-4 rounded-lg">
                   <h4 className="font-medium text-indigo-700 mb-2">Frequência Cardíaca</h4>
@@ -1041,7 +1041,7 @@ const Index = () => {
                       </svg>
                       Adolescente: 60 - 100 bpm, média 70 bpm
                     </li>
-                  </ul>
+                </ul>
                 </div>
               </div>
             </AnimatedSection>
