@@ -284,7 +284,7 @@ const Apgar = () => {
           <AnimatedSection animation="slideRight" delay={0.3}>
             <div className="rounded-2xl overflow-hidden shadow-xl">
               <img 
-                src="https://futurosenf.wordpress.com/wp-content/uploads/2017/04/apgar-e1492421274547.png?w=620" 
+                src="https://futurosenf.wordpress.com/wp-content/uploads/2017/04/apgar-e1492421274543.png" 
                 alt="Avaliação de recém-nascido usando o escore de Apgar"
                 className="w-full h-full object-cover"
               />
