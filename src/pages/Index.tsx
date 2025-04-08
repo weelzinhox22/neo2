@@ -169,7 +169,7 @@ const Index = () => {
                       </svg>
                     ))}
                   </div>
-                  <p className="text-white/80 text-sm">Avaliado por 200+ estudantes</p>
+                  <p className="text-white/80 text-sm">Avaliado por {userCount}+ estudantes</p>
                 </div>
               </motion.div>
             </div>
