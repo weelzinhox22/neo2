@@ -161,7 +161,7 @@ const Layout = ({ children }: LayoutProps) => {
               className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent"
               whileHover={{ scale: 1.03 }}
             >
-              StudyWell Neonatal
+              StudyWel Neonatal
             </motion.h1>
           </Link>
           

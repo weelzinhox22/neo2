@@ -67,8 +67,9 @@ const Index = () => {
                 transition={{ duration: 0.6 }}
               >
                 <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full">
-                  StudyWell
+                
                 </span>
+                
                 <div className="flex items-center">
                   <motion.div 
                     className="h-2 w-2 rounded-full bg-green-400"

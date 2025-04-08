@@ -64,7 +64,6 @@ const UTINeo = () => {
                 transition={{ duration: 0.6 }}
               >
                 <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full">
-                  StudyWell
                 </span>
                 <Badge className="bg-blue-500/20 text-white border-blue-300/30 backdrop-blur-sm">
                   Fisioterapia Neonatal
