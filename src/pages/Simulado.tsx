@@ -879,48 +879,7 @@ const Simulado = () => {
     } else {
       handleFinishSimulado();
     }
-  };{currentQuestionIndex === shuffledQuestions.length - 1 ? (
-    <Button 
-      onClick={handleFinishSimulado}
-      className="bg-green-600 hover:bg-green-700 px-5 py-2.5"
-      disabled={!selectedAnswers[currentQuestionIndex]}
-    >
-      Finalizar
-      <CheckCircle className="ml-2 h-4 w-4" />
-    </Button>
-  ) : (
-    <Button 
-      onClick={handleNextQuestion}
-      className="px-5 py-2.5"
-      disabled={!selectedAnswers[currentQuestionIndex]}
-    >
-      Próxima
-      <ArrowRight className="ml-2 h-4 w-4" />
-    </Button>
-  )}useEffect(() => {
-    if (started && !finished) {
-      // Código existente do timer...
-      
-      // Detectar quando o usuário sai da aba
-      const handleVisibilityChange = () => {
-        if (document.visibilityState === 'hidden') {
-          toast({
-            title: "Simulado finalizado!",
-            description: "Você saiu da aba do simulado. Por segurança, seu teste foi finalizado.",
-            variant: "destructive"
-          });
-          handleFinishSimulado();
-        }
-      };
-  
-      document.addEventListener('visibilitychange', handleVisibilityChange);
-  
-      return () => {
-        // Limpeza existente...
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
-      };
-    }
-  }, [started, finished, toast]);
+  };
 
   const handlePrevQuestion = () => {
     if (currentQuestionIndex > 0) {
@@ -989,47 +948,74 @@ const Simulado = () => {
   const results = finished ? calculateResults() : null;
 
   return (
-    <div className="min-h-screen pb-20 bg-gray-50">
+    <div className="min-h-screen pb-20 bg-gradient-to-b from-gray-50 to-white">
       {started && !finished && (
-        <div className="sticky top-16 z-10 bg-white shadow-md p-4 md:p-5 mb-6 rounded-b-xl">
+        <motion.div 
+          className="sticky top-16 z-10 bg-white/80 backdrop-blur-sm shadow-md p-4 md:p-5 mb-6 rounded-b-xl border-b border-gray-100"
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
           <div className="flex flex-col md:flex-row justify-between items-center gap-3">
-            <div className="flex items-center">
+            <motion.div 
+              className="flex items-center"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            >
               <Users className="h-5 w-5 mr-2 text-blue-500" />
               <span className="text-sm font-medium text-gray-600">{userCount} estudantes online</span>
-            </div>
+            </motion.div>
             <div className="flex items-center space-x-4">
-              <div className="flex items-center bg-gray-100 px-3 py-2 rounded-lg">
+              <motion.div 
+                className="flex items-center bg-gray-100/80 px-4 py-2 rounded-lg border border-gray-200"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              >
                 <Clock className="h-5 w-5 mr-2 text-orange-500" />
                 <span className={`font-bold ${timeRemaining < 300 ? 'text-red-500 animate-pulse' : 'text-gray-800'}`}>
                   {formatTime(timeRemaining)}
                 </span>
-              </div>
+              </motion.div>
               <div className="hidden md:block w-32">
                 <Progress value={(currentQuestionIndex + 1) / shuffledQuestions.length * 100} className="h-2.5" />
               </div>
-              <span className="font-medium">{currentQuestionIndex + 1}/{shuffledQuestions.length}</span>
+              <span className="font-medium text-gray-700">{currentQuestionIndex + 1}/{shuffledQuestions.length}</span>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
 
       <AnimatedSection>
         {!started && !finished && (
-          <Card className="max-w-4xl mx-auto mt-8 mb-8 shadow-lg border-0">
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Card className="max-w-4xl mx-auto mt-8 mb-8 shadow-xl border-0">
             <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-t-xl pb-6">
               <div className="flex justify-between items-center mb-2">
-                <CardTitle className="text-2xl md:text-3xl">Simulado - Neonatologia</CardTitle>
-                <div className="flex items-center gap-2 bg-white/20 px-3 py-1.5 rounded-full text-sm font-medium">
+                  <CardTitle className="text-2xl md:text-3xl font-bold">Simulado - Neonatologia</CardTitle>
+                  <motion.div 
+                    className="flex items-center gap-2 bg-white/20 px-4 py-1.5 rounded-full text-sm font-medium"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                  >
                   <Users size={16} />
                   {userCount} estudantes online
-                </div>
+                  </motion.div>
               </div>
               <CardDescription className="text-white/90 text-base">
                 Teste seus conhecimentos em neonatologia com este simulado
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6 p-6 md:p-8">
-              <div className="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r">
+                <motion.div 
+                  className="bg-amber-50/80 border-l-4 border-amber-500 p-5 rounded-r backdrop-blur-sm"
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
                 <div className="flex gap-3">
                   <AlertTriangle className="h-6 w-6 text-amber-500 mb-3" />
                   <div>
@@ -1045,30 +1031,37 @@ const Simulado = () => {
                     </ul>
                   </div>
                 </div>
-              </div>
+                </motion.div>
               
               <div className="flex flex-wrap justify-center items-center gap-8 mt-8">
-                <div className="flex flex-col items-center">
-                  <div className="rounded-full bg-blue-100 p-4 mb-3">
-                    <Clock className="h-7 w-7 text-blue-600" />
+                  {[
+                    { icon: <Clock className="h-7 w-7 text-blue-600" />, text: "50 minutos", color: "blue" },
+                    { icon: <CheckCircle className="h-7 w-7 text-green-600" />, text: "50 questões", color: "green" },
+                    { icon: <BookOpen className="h-7 w-7 text-purple-600" />, text: "Conteúdo de estudo", color: "purple" }
+                  ].map((item, index) => (
+                    <motion.div 
+                      key={index}
+                      className="flex flex-col items-center"
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                    >
+                      <div className={`rounded-full bg-${item.color}-100/80 p-4 mb-3 backdrop-blur-sm`}>
+                        {item.icon}
                   </div>
-                  <p className="font-medium">50 minutos</p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="rounded-full bg-green-100 p-4 mb-3">
-                    <CheckCircle className="h-7 w-7 text-green-600" />
-                  </div>
-                  <p className="font-medium">50 questões</p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="rounded-full bg-purple-100 p-4 mb-3">
-                    <BookOpen className="h-7 w-7 text-purple-600" />
-                  </div>
-                  <p className="font-medium">Conteúdo de estudo</p>
-                </div>
+                      <p className="font-medium text-gray-700">{item.text}</p>
+                    </motion.div>
+                  ))}
               </div>
             </CardContent>
             <CardFooter className="flex justify-center p-6 md:p-8 pt-0">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                >
               <Button 
                 onClick={handleStartSimulado} 
                 size="lg"
@@ -1077,14 +1070,26 @@ const Simulado = () => {
                 Iniciar Simulado
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
+                </motion.div>
             </CardFooter>
           </Card>
+          </motion.div>
         )}
         
         {started && !finished && currentQuestion && (
-          <div className="max-w-4xl mx-auto mt-8 px-4">
+          <motion.div 
+            className="max-w-4xl mx-auto mt-8 px-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             {attemptToLeave && (
-              <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+              <motion.div 
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
                 <Card className="w-full max-w-md animate-in fade-in duration-300">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-center flex flex-col items-center">
@@ -1098,6 +1103,10 @@ const Simulado = () => {
                     </p>
                   </CardContent>
                   <CardFooter className="flex flex-col sm:flex-row justify-between gap-3">
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
                     <Button 
                       variant="outline" 
                       onClick={handleCancelLeave}
@@ -1105,6 +1114,11 @@ const Simulado = () => {
                     >
                       Continuar Prova
                     </Button>
+                    </motion.div>
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
                     <Button 
                       variant="destructive" 
                       onClick={handleConfirmLeave}
@@ -1112,52 +1126,43 @@ const Simulado = () => {
                     >
                       Finalizar Agora
                     </Button>
+                    </motion.div>
                   </CardFooter>
                 </Card>
-              </div>
+              </motion.div>
             )}
 
-            <Card className="mb-8 shadow-lg border-0 overflow-hidden">
-              <CardHeader className="p-6 md:p-8 pb-4 md:pb-6 bg-white border-b">
-                <div className="flex justify-between items-start gap-4">
-                  <div>
-                    <Badge className={`
-                      ${currentQuestion.difficulty === 'fácil' 
-                        ? 'bg-green-500' 
-                        : currentQuestion.difficulty === 'médio' 
-                          ? 'bg-yellow-500' 
-                          : 'bg-red-500'} 
-                      text-white mb-3 px-3 py-1`}
-                    >
-                      {currentQuestion.difficulty}
-                    </Badge>
-                    <CardTitle className="text-xl md:text-2xl text-gray-900">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Card className="mb-8 shadow-xl border-0">
+                <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-t-xl pb-6">
+                  <div className="flex justify-between items-center">
+                    <CardTitle className="text-xl md:text-2xl font-bold">
                       Questão {currentQuestionIndex + 1}
                     </CardTitle>
+                    <Badge variant="outline" className="bg-white/20 text-white border-white/30">
+                      {currentQuestion.difficulty}
+                    </Badge>
                   </div>
-                  <Button 
-                    variant="ghost" 
-                    size="icon"
-                    className="text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full" 
-                    onClick={() => setAttemptToLeave(true)}
-                  >
-                    <X className="h-5 w-5" />
-                  </Button>
-                </div>
-                <CardDescription className="text-lg text-gray-800 mt-3">
-                  {currentQuestion.text}
-                </CardDescription>
               </CardHeader>
               <CardContent className="p-6 md:p-8 pt-5 md:pt-6">
                 <div className="space-y-4">
                   {currentQuestion.options.map((option, idx) => (
-                    <div 
+                      <motion.div 
                       key={idx}
                       className={`flex items-start space-x-4 p-5 rounded-lg border-2 transition-all cursor-pointer
                         ${selectedAnswers[currentQuestionIndex] === option 
                           ? 'bg-blue-50 border-blue-500 shadow-sm' 
                           : 'hover:bg-gray-50 border-gray-200 hover:border-gray-300'}`}
                       onClick={() => handleSelectAnswer(option)}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: idx * 0.1 }}
                     >
                       <Checkbox 
                         checked={selectedAnswers[currentQuestionIndex] === option}
@@ -1170,11 +1175,15 @@ const Simulado = () => {
                       >
                         {option}
                       </label>
-                    </div>
+                      </motion.div>
                   ))}
                 </div>
               </CardContent>
               <CardFooter className="flex justify-between p-6 md:p-8 pt-4 md:pt-5 border-t bg-gray-50">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
                 <Button 
                   variant="outline" 
                   onClick={handlePrevQuestion}
@@ -1183,7 +1192,12 @@ const Simulado = () => {
                 >
                   <ArrowLeft className="mr-2 h-4 w-4" /> Anterior
                 </Button>
+                  </motion.div>
                 {currentQuestionIndex === shuffledQuestions.length - 1 ? (
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
                   <Button 
                     onClick={handleFinishSimulado}
                     className="bg-green-600 hover:bg-green-700 px-5 py-2.5"
@@ -1191,7 +1205,12 @@ const Simulado = () => {
                     Finalizar
                     <CheckCircle className="ml-2 h-4 w-4" />
                   </Button>
+                    </motion.div>
                 ) : (
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
                   <Button 
                     onClick={handleNextQuestion}
                     className="px-5 py-2.5"
@@ -1199,158 +1218,93 @@ const Simulado = () => {
                     Próxima
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
+                    </motion.div>
                 )}
               </CardFooter>
             </Card>
 
-            <div className="bg-white p-6 rounded-xl shadow-md mb-8">
-              <h3 className="text-lg font-medium mb-4">Progresso</h3>
+              <motion.div 
+                className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-md mb-8 border border-gray-100"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <h3 className="text-lg font-medium mb-4 text-gray-800">Progresso</h3>
               <Progress value={(Object.keys(selectedAnswers).length / shuffledQuestions.length) * 100} className="h-2.5 mb-3" />
               <div className="flex justify-between text-sm text-gray-500">
                 <span>{Object.keys(selectedAnswers).length} respondidas</span>
                 <span>{shuffledQuestions.length - Object.keys(selectedAnswers).length} restantes</span>
               </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2 justify-center mb-8 bg-white p-5 rounded-xl shadow-md">
-              <div className="w-full text-center mb-2 text-gray-700 font-medium">Navegação rápida</div>
-              <div className="flex flex-wrap gap-2 justify-center">
-                {shuffledQuestions.map((_, idx) => (
-                  <Button
-                    key={idx}
-                    variant="outline"
-                    size="sm"
-                    className={`w-10 h-10 p-0 font-medium
-                      ${idx === currentQuestionIndex ? 'bg-blue-100 border-blue-500' : ''}
-                      ${isQuestionAnswered(idx) && idx !== currentQuestionIndex ? 'bg-green-50 text-green-600 border-green-300' : ''}
-                    `}
-                    onClick={() => setCurrentQuestionIndex(idx)}
-                  >
-                    {idx + 1}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         )}
-        
-        {finished && results && (
-          <Card className="max-w-4xl mx-auto mt-8 mb-8 shadow-lg border-0">
-            <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-t-xl pb-6">
-              <CardTitle className="text-2xl md:text-3xl text-center">
+
+        {finished && (
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Card className="max-w-4xl mx-auto mt-8 mb-8 shadow-xl border-0">
+              <CardHeader className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-t-xl pb-6">
+                <CardTitle className="text-2xl md:text-3xl font-bold text-center">
                 Resultado do Simulado
               </CardTitle>
-              <CardDescription className="text-center text-white/90 text-base">
-                Confira seu desempenho e as respostas corretas abaixo
-              </CardDescription>
             </CardHeader>
             <CardContent className="p-6 md:p-8">
-              <div className="mb-12 text-center">
-                <div className="w-36 h-36 mx-auto rounded-full border-8 border-blue-500 flex items-center justify-center mb-6 shadow-lg">
-                  <span className="text-4xl font-bold text-blue-600">{results.percentage}%</span>
+                <div className="text-center mb-8">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                    className="inline-block"
+                  >
+                    <div className="w-24 h-24 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center mx-auto mb-6">
+                      <CheckCircle className="h-12 w-12 text-white" />
                 </div>
-                <p className="text-xl font-medium text-gray-800">
-                  Você acertou {results.correct} de {results.total} questões!
+                  </motion.div>
+                  <h2 className="text-2xl font-bold mb-2">Parabéns!</h2>
+                  <p className="text-gray-600">
+                    Você completou o simulado com sucesso.
                 </p>
               </div>
-
-              <div className="space-y-10">
-                {shuffledQuestions.map((question, idx) => (
-                  <Card key={idx} className={`
-                    ${selectedAnswers[idx] === question.answer 
-                      ? 'border-l-4 border-l-green-500' 
-                      : 'border-l-4 border-l-red-500'}
-                    shadow-md
-                  `}>
-                    <CardHeader className="pb-3 bg-gray-50">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <Badge className={`
-                            ${question.difficulty === 'fácil' 
-                              ? 'bg-green-500' 
-                              : question.difficulty === 'médio' 
-                                ? 'bg-yellow-500' 
-                                : 'bg-red-500'} 
-                            text-white px-3 py-1`}
-                          >
-                            {question.difficulty}
-                          </Badge>
-                          <CardTitle className="text-lg text-gray-800">
-                            Questão {idx + 1}
-                          </CardTitle>
-                        </div>
-                        <Button 
-                          variant="ghost" 
-                          size="icon"
-                          className="text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full" 
-                          onClick={() => setAttemptToLeave(true)}
-                        >
-                          <X className="h-5 w-5" />
-                        </Button>
-                      </div>
-                      <CardDescription className="text-base text-gray-800 mt-2">
-                        {question.text}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="pb-3 pt-4">
-                      <div className="space-y-3">
-                        {question.options.map((option, optionIdx) => (
-                          <div 
-                            key={optionIdx}
-                            className={`p-4 rounded-md
-                              ${option === question.answer ? 'bg-green-100 border border-green-200' : ''}
-                              ${selectedAnswers[idx] === option && option !== question.answer ? 'bg-red-100 border border-red-200' : ''}
-                              ${!(selectedAnswers[idx] === option || option === question.answer) ? 'bg-gray-50 border border-gray-200' : ''}
-                            `}
-                          >
-                            <div className="flex items-center space-x-3">
-                              {option === question.answer && (
-                                <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
-                              )}
-                              {selectedAnswers[idx] === option && option !== question.answer && (
-                                <X className="h-5 w-5 text-red-600 flex-shrink-0" />
-                              )}
-                              <span className={`
-                                ${option === question.answer ? 'font-medium text-green-800' : ''}
-                                ${selectedAnswers[idx] === option && option !== question.answer ? 'text-red-800' : ''}
-                              `}>
-                                {option}
-                              </span>
-                            </div>
-                          </div>
-                        ))}
-
-                        <div className="mt-6 bg-blue-50 p-5 rounded-md border border-blue-100">
-                          <div className="flex items-start">
-                            <div className="mr-3 mt-1">
-                              <AlertCircle className="h-5 w-5 text-blue-600" />
-                            </div>
-                            <div>
-                              <p className="font-medium text-blue-800 mb-2">Explicação:</p>
-                              <p className="text-blue-900">{question.explanation}</p>
-                              {question.relatedContentPath && question.relatedContentTitle && (
-                                <div className="mt-3 pt-3 border-t border-blue-200">
-                                  <Link 
-                                    to={question.relatedContentPath} 
-                                    target="_blank"
-                                    className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
-                                  >
-                                    <BookOpen className="h-4 w-4 mr-1" />
-                                    {question.relatedContentTitle}
-                                    <ExternalLink className="h-3 w-3 ml-1" />
-                                  </Link>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                  <motion.div
+                    className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-md border border-gray-100"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                  >
+                    <h3 className="text-lg font-medium mb-2 text-gray-800">Questões Respondidas</h3>
+                    <p className="text-3xl font-bold text-blue-600">{Object.keys(selectedAnswers).length}</p>
+                  </motion.div>
+                  <motion.div
+                    className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-md border border-gray-100"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                  >
+                    <h3 className="text-lg font-medium mb-2 text-gray-800">Tempo Restante</h3>
+                    <p className="text-3xl font-bold text-green-600">{formatTime(timeRemaining)}</p>
+                  </motion.div>
+                  <motion.div
+                    className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-md border border-gray-100"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                  >
+                    <h3 className="text-lg font-medium mb-2 text-gray-800">Questões Restantes</h3>
+                    <p className="text-3xl font-bold text-purple-600">{shuffledQuestions.length - Object.keys(selectedAnswers).length}</p>
+                  </motion.div>
               </div>
             </CardContent>
             <CardFooter className="flex justify-center p-6 md:p-8">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                >
               <Button 
                 onClick={handleTryAgain}
                 size="lg"
@@ -1359,8 +1313,10 @@ const Simulado = () => {
                 <Repeat className="mr-2 h-5 w-5" />
                 Fazer novamente
               </Button>
+                </motion.div>
             </CardFooter>
           </Card>
+          </motion.div>
         )}
       </AnimatedSection>
     </div>
