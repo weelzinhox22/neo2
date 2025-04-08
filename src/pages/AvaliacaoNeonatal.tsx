@@ -219,7 +219,7 @@ const AvaliacaoNeonatal = () => {
           <AnimatedSection animation="slideRight" delay={0.3}>
             <div className="rounded-2xl overflow-hidden shadow-xl">
               <img 
-                src="https://images.unsplash.com/photo-1623854775676-3e0ca4328cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                src="https://cdn.maemequer.pt/wp-content/uploads/2015/09/recem-nascido-558.jpg" 
                 alt="A Pele do Recém-Nascido"
                 className="w-full h-full object-cover"
               />
