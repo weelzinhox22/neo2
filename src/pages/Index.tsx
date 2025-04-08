@@ -13,9 +13,9 @@ const Index = () => {
   useEffect(() => {
     const userCountInterval = setInterval(() => {
       setUserCount(prev => {
-        const change = Math.random() > 0.5 ? 1 : -1;
-        const newCount = prev + change;
-        return newCount > 10 ? newCount : 11;
+        // Sempre aumenta entre 1 e 3 estudantes
+        const increase = Math.floor(Math.random() * 3) + 1;
+        return prev + increase;
       });
     }, 5000);
     
@@ -102,7 +102,7 @@ const Index = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                Olá! Preparado para nossa aula sobre Fisioterapia Neonatal? Vamos abordar desde a história da Neonatologia até as técnicas fisioterapêuticas utilizadas na UTINeo, como se estivéssemos em uma sala de aula de pós-graduação.
+                Olá! Preparado para nossa aula sobre Fisioterapia Neonatal? Vamos abordar desde a história da Neonatologia até as técnicas fisioterapêuticas utilizadas na UTINeo.
               </motion.p>
               
               <motion.div
@@ -212,17 +212,58 @@ const Index = () => {
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="relative"
               >
-                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/30 to-teal-500/30 rounded-2xl blur-xl transform -rotate-6 scale-105"></div>
-                <div className="relative bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-xl">
-                  <div className="flex justify-between items-center mb-6">
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/30 to-teal-500/30 rounded-2xl blur-xl transform -rotate-6 scale-105 animate-pulse"></div>
+                <motion.div 
+                  className="relative bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-xl"
+                  whileHover={{ 
+                    scale: 1.02, 
+                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+                    borderColor: "rgba(255, 255, 255, 0.3)"
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <motion.div 
+                    className="flex justify-between items-center mb-6"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                  >
                     <div className="flex items-center">
-                      <div className="h-10 w-10 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center">
-                        <Activity className="h-5 w-5 text-white" />
-                      </div>
+                      <motion.div 
+                        className="h-10 w-10 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        animate={{ 
+                          boxShadow: ["0 0 0 0 rgba(59, 130, 246, 0)", "0 0 0 10px rgba(59, 130, 246, 0)"],
+                        }}
+                        transition={{ 
+                          boxShadow: { repeat: Infinity, duration: 1.5 },
+                          scale: { type: "spring", stiffness: 400, damping: 10 }
+                        }}
+                      >
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                        >
+                          <Activity className="h-5 w-5 text-white" />
+                        </motion.div>
+                      </motion.div>
                       <h3 className="ml-3 text-xl font-semibold text-white">Simulado Interativo</h3>
                     </div>
-                    <span className="px-3 py-1 bg-white/20 rounded-full text-white text-xs">Novo</span>
-                  </div>
+                    <motion.span 
+                      className="px-3 py-1 bg-white/20 rounded-full text-white text-xs"
+                      whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.3)" }}
+                      animate={{ 
+                        y: [0, -3, 0],
+                        rotate: [-2, 2, -2],
+                      }}
+                      transition={{ 
+                        y: { repeat: Infinity, duration: 2, ease: "easeInOut" },
+                        rotate: { repeat: Infinity, duration: 4, ease: "easeInOut" },
+                      }}
+                    >
+                      Novo
+                    </motion.span>
+                  </motion.div>
                   
                   <div className="space-y-4">
                     {[1, 2, 3].map((item) => (
@@ -232,35 +273,100 @@ const Index = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: 0.7 + (item * 0.1) }}
                         className="p-3 bg-white/10 rounded-lg flex items-center"
+                        whileHover={{ 
+                          backgroundColor: "rgba(255, 255, 255, 0.2)",
+                          scale: 1.02,
+                          x: 5
+                        }}
                       >
-                        <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center mr-3">
-                          <CheckCircle className="h-4 w-4 text-green-400" />
-                        </div>
-                        <div>
+                        <motion.div 
+                          className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center mr-3"
+                          whileHover={{ scale: 1.1 }}
+                          animate={{ 
+                            backgroundColor: ["rgba(255, 255, 255, 0.2)", "rgba(255, 255, 255, 0.3)", "rgba(255, 255, 255, 0.2)"]
+                          }}
+                          transition={{ 
+                            backgroundColor: { repeat: Infinity, duration: 2, ease: "easeInOut" }
+                          }}
+                        >
+                          <motion.div
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                          >
+                            <CheckCircle className="h-4 w-4 text-green-400" />
+                          </motion.div>
+                        </motion.div>
+                        <div className="flex-1">
                           <p className="text-white text-sm">Questão {item} respondida</p>
-                          <div className="h-1.5 w-full bg-white/20 rounded-full mt-1">
-                            <div className="h-full bg-gradient-to-r from-green-400 to-teal-300 rounded-full" style={{ width: `${30 * item}%` }}></div>
+                          <div className="h-1.5 w-full bg-white/20 rounded-full mt-1 overflow-hidden">
+                            <motion.div 
+                              className="h-full bg-gradient-to-r from-green-400 to-teal-300 rounded-full"
+                              initial={{ width: 0 }}
+                              animate={{ width: `${30 * item}%` }}
+                              transition={{ 
+                                duration: 1.5, 
+                                delay: 0.7 + (item * 0.2),
+                                ease: "easeOut"
+                              }}
+                            />
                           </div>
                         </div>
                       </motion.div>
                     ))}
                   </div>
                   
-                  <div className="mt-6 pt-6 border-t border-white/10">
+                  <motion.div 
+                    className="mt-6 pt-6 border-t border-white/10"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.1 }}
+                  >
                     <div className="flex justify-between items-center">
                       <p className="text-white/80 text-sm">Progresso total</p>
-                      <p className="text-white font-medium">60%</p>
+                      <motion.p 
+                        className="text-white font-medium"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: 1.3 }}
+                      >
+                        60%
+                      </motion.p>
                     </div>
-                    <div className="h-2 w-full bg-white/20 rounded-full mt-2">
+                    <div className="h-2 w-full bg-white/20 rounded-full mt-2 overflow-hidden">
                       <motion.div 
-                        className="h-full bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"
+                        className="h-full bg-gradient-to-r from-blue-400 to-teal-400 rounded-full relative"
                         initial={{ width: 0 }}
                         animate={{ width: '60%' }}
-                        transition={{ duration: 1, delay: 1.2 }}
-                      ></motion.div>
+                        transition={{ duration: 1.5, delay: 1.2, ease: "easeOut" }}
+                      />
                     </div>
-                  </div>
-                </div>
+                    
+                    {/* Partículas animadas */}
+                    {[...Array(5)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute w-2 h-2 rounded-full bg-white/40"
+                        initial={{ 
+                          x: `${Math.random() * 100}%`, 
+                          y: `${Math.random() * 100}%`, 
+                          opacity: 0,
+                          scale: 0
+                        }}
+                        animate={{ 
+                          y: [null, -20],
+                          opacity: [0, 0.8, 0],
+                          scale: [0, 1, 0]
+                        }}
+                        transition={{ 
+                          repeat: Infinity, 
+                          duration: 2,
+                          delay: i * 0.4,
+                          ease: "easeOut"
+                        }}
+                      />
+                    ))}
+                  </motion.div>
+                </motion.div>
               </motion.div>
             </div>
           </div>
@@ -679,14 +785,34 @@ const Index = () => {
         </div>
         
         <div className="flex justify-center">
-          <AnimatedButton 
-            to="/simulado" 
-            variant="primary"
-            size="lg"
-            icon={<ChevronRight size={18} />}
-          >
-            Testar Conhecimentos no Simulado
-          </AnimatedButton>
+          <Link to="/simulado" className="group">
+            <div className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 group-hover:transform group-hover:scale-[1.02] group-hover:shadow-lg group-hover:shadow-brand-500/20 relative">
+              {/* Efeito de destaque pulsante */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-teal-500 rounded-xl blur opacity-0 group-hover:opacity-50 transition-all duration-500 group-hover:animate-pulse"></div>
+              
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                  alt="Simulado"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:transform group-hover:scale-110"
+                />
+                {/* Badge de destaque */}
+                <div className="absolute top-4 right-4 bg-gradient-to-r from-blue-600 to-teal-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg transform rotate-3 group-hover:rotate-0 transition-all duration-300">
+                  Interativo
+                </div>
+              </div>
+              <div className="relative p-6 bg-white dark:bg-gray-800">
+                <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Simulado Interativo</h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-4">Teste seus conhecimentos com 50 questões sobre Fisioterapia Neonatal.</p>
+                <span className="text-brand-600 dark:text-brand-400 font-medium flex items-center justify-center gap-1 group-hover:gap-3 transition-all">
+                  Fazer Simulado <ChevronRight size={16} className="transition-transform group-hover:transform group-hover:translate-x-2" />
+                </span>
+                
+                {/* Indicador de progresso animado */}
+                <div className="mt-4 h-1 w-0 bg-gradient-to-r from-blue-600 to-teal-500 rounded-full group-hover:w-full transition-all duration-700 ease-in-out"></div>
+              </div>
+            </div>
+          </Link>
         </div>
       </AnimatedSection>
 
@@ -703,7 +829,7 @@ const Index = () => {
           
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { question: "Quais são os pioneiros da Neonatologia?", answer: "Dr. Pierre Budin (1882, França) e Dr. Julius Hess (1914, Chicago)" },
+              { question: "Qual a frequência cardíaca normal esperada para 1 ano?", answer: "25 - 30 RPM" },
               { question: "Quais são os tipos de RN por idade gestacional?", answer: "Pré-Termo (<37 semanas), Termo (38-41 semanas), Pós-Termo (≥42 semanas)" },
               { question: "O que significa RN-EBP?", answer: "Recém-nascido de extremo baixo peso (inferior a 1.000g)" },
               { question: "Qual a frequência respiratória normal de um prematuro?", answer: "40-50 respirações por minuto" },

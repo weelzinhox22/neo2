@@ -23,12 +23,14 @@ const Layout = ({ children }: LayoutProps) => {
   const headerBackground = useTransform(
     scrollY, 
     [0, 100], 
-    ["rgba(255, 255, 255, 0.9)", "rgba(255, 255, 255, 0.95)"]
+    [activeTheme === 'dark' ? "rgba(23, 23, 23, 0.9)" : "rgba(255, 255, 255, 0.9)", 
+     activeTheme === 'dark' ? "rgba(23, 23, 23, 0.95)" : "rgba(255, 255, 255, 0.95)"]
   );
   const headerShadow = useTransform(
     scrollY, 
     [0, 100], 
-    ["0 2px 10px rgba(0, 0, 0, 0.05)", "0 4px 20px rgba(0, 0, 0, 0.1)"]
+    [activeTheme === 'dark' ? "0 2px 10px rgba(0, 0, 0, 0.2)" : "0 2px 10px rgba(0, 0, 0, 0.05)", 
+     activeTheme === 'dark' ? "0 4px 20px rgba(0, 0, 0, 0.3)" : "0 4px 20px rgba(0, 0, 0, 0.1)"]
   );
 
   // Throttle mousemove events for better performance
@@ -73,9 +75,46 @@ const Layout = ({ children }: LayoutProps) => {
   };
 
   const toggleTheme = () => {
-    setActiveTheme(prev => prev === 'light' ? 'dark' : 'light');
+    const newTheme = activeTheme === 'light' ? 'dark' : 'light';
+    setActiveTheme(newTheme);
     document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', newTheme);
   };
+
+  // Verificar preferência do usuário e do sistema ao carregar
+  useEffect(() => {
+    // Verificar localStorage primeiro
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme) {
+      setActiveTheme(savedTheme as 'light' | 'dark');
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } else {
+      // Verificar preferência do sistema
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (prefersDark) {
+        setActiveTheme('dark');
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+    
+    // Adicionar listener para mudanças na preferência do sistema
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      const newTheme = e.matches ? 'dark' : 'light';
+      setActiveTheme(newTheme);
+      document.documentElement.classList.toggle('dark', e.matches);
+      localStorage.setItem('theme', newTheme);
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   // Enhanced navigation items with better icons and descriptions
   const navCategories = [

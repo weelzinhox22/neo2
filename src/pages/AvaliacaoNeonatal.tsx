@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Heart, Stethoscope, Eye, Ear, Baby } from "lucide-react";
+import { ArrowRight, Heart, Stethoscope, Eye, Ear, Baby, Ruler, Scale, Brain, CheckCircle } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import ParallaxSection from "@/components/ParallaxSection";
 import AnimatedButton from "@/components/AnimatedButton";
@@ -15,31 +15,134 @@ const AvaliacaoNeonatal = () => {
         overlayOpacity={0.6}
       >
         <div className="container mx-auto px-6 py-24">
-          <div className="max-w-3xl">
-            <motion.span 
-              className="inline-block mb-4 px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              StudyWell
-            </motion.span>
-            <motion.h1 
-              className="text-4xl md:text-6xl font-bold text-white mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Avaliação Neonatal
-            </motion.h1>
-            <motion.p 
-              className="text-xl text-white/90 mb-8 max-w-2xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              Uma abordagem detalhada para identificar e abordar as necessidades de saúde do recém-nascido.
-            </motion.p>
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+            <div className="md:col-span-3">
+              <motion.span 
+                className="inline-block mb-4 px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                StudyWell
+              </motion.span>
+              <motion.h1 
+                className="text-4xl md:text-6xl font-bold text-white mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                Avaliação Neonatal
+              </motion.h1>
+              <motion.p 
+                className="text-xl text-white/90 mb-8 max-w-2xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                Uma abordagem detalhada para identificar e abordar as necessidades de saúde do recém-nascido.
+              </motion.p>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <AnimatedButton 
+                  to="/apgar" 
+                  variant="primary"
+                  size="lg"
+                  className="bg-gradient-to-r from-blue-600 to-teal-500 shadow-lg hover:shadow-blue-500/50 transition-all duration-300 font-medium"
+                >
+                  <ArrowRight size={18} className="mr-2" />
+                  Conhecer Tabela de Apgar
+                </AnimatedButton>
+              </motion.div>
+            </div>
+            
+            {/* Card animado no lado direito */}
+            <div className="md:col-span-2 relative z-10 hidden md:block">
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.5 }}
+                className="relative"
+              >
+                <motion.div
+                  className="absolute -top-4 -left-4 w-20 h-20 bg-blue-500/20 rounded-full blur-2xl"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.5, 0.3]
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl overflow-hidden relative">
+                  <motion.div 
+                    className="absolute -bottom-6 -right-6 w-32 h-32 bg-teal-500/20 rounded-full blur-2xl"
+                    animate={{ 
+                      scale: [1, 1.3, 1],
+                      opacity: [0.2, 0.4, 0.2]
+                    }}
+                    transition={{
+                      duration: 7,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 1
+                    }}
+                  />
+                  
+                  <div className="flex justify-center mb-4">
+                    <motion.div 
+                      className="bg-gradient-to-r from-blue-500 to-teal-400 p-3 rounded-full text-white"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <Stethoscope size={32} />
+                    </motion.div>
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-white text-center mb-3">
+                    Componentes da Avaliação
+                  </h3>
+                  
+                  <p className="text-white/80 text-center mb-5">
+                    Uma avaliação neonatal completa inclui diversos aspectos fundamentais para garantir a saúde do recém-nascido.
+                  </p>
+                  
+                  <div className="space-y-3">
+                    <motion.div 
+                      className="flex items-center gap-3 bg-white/10 p-3 rounded-lg"
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Ruler size={20} className="text-blue-300" />
+                      <span className="text-white/90">Medidas antropométricas</span>
+                    </motion.div>
+                    
+                    <motion.div 
+                      className="flex items-center gap-3 bg-white/10 p-3 rounded-lg"
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300, delay: 0.05 }}
+                    >
+                      <Brain size={20} className="text-blue-300" />
+                      <span className="text-white/90">Avaliação neurológica</span>
+                    </motion.div>
+                    
+                    <motion.div 
+                      className="flex items-center gap-3 bg-white/10 p-3 rounded-lg"
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300, delay: 0.1 }}
+                    >
+                      <Heart size={20} className="text-blue-300" />
+                      <span className="text-white/90">Sinais vitais</span>
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </ParallaxSection>

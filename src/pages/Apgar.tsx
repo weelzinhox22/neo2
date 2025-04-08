@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Heart, Activity, Smile, Zap, Wind } from "lucide-react";
+import { ArrowRight, Heart, Activity, Smile, Zap, Wind, Clock, CheckCircle, AlertTriangle, Timer } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import ParallaxSection from "@/components/ParallaxSection";
 import AnimatedButton from "@/components/AnimatedButton";
+import InfoCard from "@/components/InfoCard";
 
 const Apgar = () => {
   return (
@@ -14,31 +15,134 @@ const Apgar = () => {
         overlayOpacity={0.7}
       >
         <div className="container mx-auto px-6 py-24">
-          <div className="max-w-3xl">
-            <motion.span 
-              className="inline-block mb-4 px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              StudyWell
-            </motion.span>
-            <motion.h1 
-              className="text-4xl md:text-6xl font-bold text-white mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Tabela de Apgar
-            </motion.h1>
-            <motion.p 
-              className="text-xl text-white/90 mb-8 max-w-2xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              Um método rápido e preciso para avaliar a condição clínica do recém-nascido após o nascimento.
-            </motion.p>
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+            <div className="md:col-span-3">
+              <motion.span 
+                className="inline-block mb-4 px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                StudyWell
+              </motion.span>
+              <motion.h1 
+                className="text-4xl md:text-6xl font-bold text-white mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                Tabela de Apgar
+              </motion.h1>
+              <motion.p 
+                className="text-xl text-white/90 mb-8 max-w-2xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                Um método rápido e preciso para avaliar a condição clínica do recém-nascido após o nascimento.
+              </motion.p>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <AnimatedButton 
+                  to="/avaliacao-neonatal" 
+                  variant="primary"
+                  size="lg"
+                  className="bg-gradient-to-r from-purple-600 to-pink-500 shadow-lg hover:shadow-purple-500/50 transition-all duration-300 font-medium"
+                >
+                  <ArrowRight size={18} className="mr-2" />
+                  Avaliação Neonatal
+                </AnimatedButton>
+              </motion.div>
+            </div>
+            
+            {/* Card animado no lado direito */}
+            <div className="md:col-span-2 relative z-10 hidden md:block">
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.5 }}
+                className="relative"
+              >
+                <motion.div
+                  className="absolute -top-4 -left-4 w-20 h-20 bg-purple-500/20 rounded-full blur-2xl"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.5, 0.3]
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl overflow-hidden relative">
+                  <motion.div 
+                    className="absolute -bottom-6 -right-6 w-32 h-32 bg-pink-500/20 rounded-full blur-2xl"
+                    animate={{ 
+                      scale: [1, 1.3, 1],
+                      opacity: [0.2, 0.4, 0.2]
+                    }}
+                    transition={{
+                      duration: 7,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 1
+                    }}
+                  />
+                  
+                  <div className="flex justify-center mb-4">
+                    <motion.div 
+                      className="bg-gradient-to-r from-purple-500 to-pink-400 p-3 rounded-full text-white"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <Timer size={32} />
+                    </motion.div>
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-white text-center mb-3">
+                    Momentos de Avaliação
+                  </h3>
+                  
+                  <p className="text-white/80 text-center mb-5">
+                    A avaliação de Apgar é realizada em momentos específicos após o nascimento do bebê.
+                  </p>
+                  
+                  <div className="space-y-3">
+                    <motion.div 
+                      className="flex items-center gap-3 bg-white/10 p-3 rounded-lg"
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Clock size={20} className="text-pink-300" />
+                      <span className="text-white/90">1º minuto após o nascimento</span>
+                    </motion.div>
+                    
+                    <motion.div 
+                      className="flex items-center gap-3 bg-white/10 p-3 rounded-lg"
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300, delay: 0.05 }}
+                    >
+                      <Clock size={20} className="text-pink-300" />
+                      <span className="text-white/90">5º minuto após o nascimento</span>
+                    </motion.div>
+                    
+                    <motion.div 
+                      className="flex items-center gap-3 bg-white/10 p-3 rounded-lg"
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300, delay: 0.1 }}
+                    >
+                      <AlertTriangle size={20} className="text-pink-300" />
+                      <span className="text-white/90">10º minuto (se necessário)</span>
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </ParallaxSection>
@@ -180,7 +284,7 @@ const Apgar = () => {
           <AnimatedSection animation="slideRight" delay={0.3}>
             <div className="rounded-2xl overflow-hidden shadow-xl">
               <img 
-                src="https://futurosenf.wordpress.com/wp-content/uploads/2017/04/apgar-e1492421274543.png?w=620" 
+                src="https://futurosenf.wordpress.com/wp-content/uploads/2017/04/apgar-e1492421274547.png?w=620" 
                 alt="Avaliação de recém-nascido usando o escore de Apgar"
                 className="w-full h-full object-cover"
               />

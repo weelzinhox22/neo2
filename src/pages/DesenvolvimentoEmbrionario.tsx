@@ -1,4 +1,3 @@
-
 import { motion, useScroll, useTransform } from "framer-motion";
 import { 
   ArrowRight, 
@@ -26,21 +25,30 @@ const TimelineEvent = ({ week, title, description, delay = 0, align = "left", ic
   const [isHovered, setIsHovered] = useState(false);
   
   return (
-    <div className="relative flex items-center justify-center my-8">
-      <div className={`w-full md:w-1/2 ${isLeft ? "md:pr-8 md:text-right" : "md:pl-8 md:ml-auto"}`}>
+    <div className="relative flex flex-col my-8">
+      {/* Card do evento - centralizado em todas as telas */}
+      <div className="w-full mx-auto px-4 relative">
+        {/* Círculo do timeline - visível apenas em desktop e posicionado fora do fluxo */}
+        <motion.div 
+          className="absolute top-6 left-0 md:left-1/2 transform md:-translate-x-1/2 -translate-x-12 w-8 h-8 rounded-full flex items-center justify-center z-10"
+          style={{ 
+            background: isLeft ? "linear-gradient(to right, #38bdf8, #7dd3fc)" : "linear-gradient(to right, #a78bfa, #c4b5fd)" 
+          }}
+          initial={{ scale: 0, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ delay, duration: 0.5 }}
+        >
+          {icon && <div className="text-white">{icon}</div>}
+        </motion.div>
+        
         <AnimatedSection 
-          animation={isLeft ? "slideRight" : "slideUp"} 
+          animation="fadeIn"
           delay={delay}
-          className={`bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 border-l-4 ${isLeft ? "border-brand-400" : "border-purple-400"}`}
+          className={`bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 border-l-4 ${isLeft ? "border-brand-400" : "border-purple-400"} md:ml-0 ml-12 relative z-20`}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className={`flex items-center mb-3 gap-2 ${isLeft ? "justify-end" : "justify-start"}`}>
-            {icon && (
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${isLeft ? "bg-brand-100 text-brand-600 order-1" : "bg-purple-100 text-purple-600"}`}>
-                {icon}
-              </div>
-            )}
+          <div className="flex items-center mb-3 gap-2">
             <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${isLeft ? "bg-brand-100 text-brand-700" : "bg-purple-100 text-purple-700"}`}>
               {week}
             </span>
@@ -61,19 +69,6 @@ const TimelineEvent = ({ week, title, description, delay = 0, align = "left", ic
           />
         </AnimatedSection>
       </div>
-      
-      {/* Circle on the timeline */}
-      <motion.div 
-        className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full hidden md:flex items-center justify-center z-10"
-        style={{ 
-          background: isLeft ? "linear-gradient(to right, #38bdf8, #7dd3fc)" : "linear-gradient(to right, #a78bfa, #c4b5fd)" 
-        }}
-        initial={{ scale: 0, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        transition={{ delay, duration: 0.5 }}
-      >
-        {icon && <div className="text-white">{icon}</div>}
-      </motion.div>
     </div>
   );
 };
@@ -159,49 +154,49 @@ const DesenvolvimentoEmbrionario = () => {
     {
       week: "Semanas 9-12",
       title: "Desenvolvimento inicial",
-      description: "Crescimento rápido, formação das unhas e desenvolvimento dos órgãos genitais externos. O feto começa a se mover, embora a mãe ainda não sinta.",
+      description: "Pescoço bem definido, pálpebras bem formadas, pele rósea e fina, e pulmões com forma definida. ",
       icon: <Baby size={16} />
     },
     {
       week: "Semanas 13-16",
       title: "Desenvolvimento intermediário",
-      description: "O feto começa a engolir líquido amniótico e a produzir urina. Os olhos se movem, e o couro cabeludo e as sobrancelhas começam a crescer.",
+      description: "O feto pesa cerca de 200g, ocorre crescimento do corpo e surge lanugem no couro cabeludo. A língua se torna funcional, ocorrem movimentos fetais ativos e aparecem os reflexos de preensão e deglutição. O feto começa a aspirar líquido amniótico e há acúmulo de mecônio. Quase todos os órgãos estão desenvolvidos. ",
       icon: <Activity size={16} />
     },
     {
       week: "Semanas 17-20",
       title: "Movimentos perceptíveis",
-      description: "A mãe começa a sentir os movimentos do bebê. O feto desenvolve um padrão de sono-vigília e pode responder a sons externos.",
+      description: "O feto pesa cerca de 450g, a pele tem lanugem e vernix, e ocorre a formação dos seios. Há secreção de urina, sucção e deglutição ativa, calcificação dos dentes, e a gestante começa a perceber os movimentos fetais. ",
       icon: <Zap size={16} />
     },
     {
       week: "Semanas 21-24",
       title: "Viabilidade",
-      description: "O feto atinge a viabilidade, o que significa que poderia sobreviver fora do útero com cuidados médicos intensivos. A pele é enrugada e translúcida.",
+      description: "O feto pesa em torno de 480g e tem o corpo magro. Os olhos estão fechados e o feto é capaz de chorar. Movimentos respiratórios bem definidos e produção de surfactante nos pulmões. Rápido crescimento do cérebro",
       icon: <Heart size={16} />
     },
     {
       week: "Semanas 25-28",
       title: "Desenvolvimento pulmonar",
-      description: "Os pulmões começam a produzir surfactante, essencial para a respiração após o nascimento. O sistema nervoso se desenvolve rapidamente.",
+      description: "O feto pesa em torno de 1.100g e os olhos reabrem. Os pulmões estão bem desenvolvidos, e o feto pode sobreviver (prematuro).",
       icon: <Activity size={16} />
     },
     {
       week: "Semanas 29-32",
       title: "Ganho de peso",
-      description: "O feto ganha peso rapidamente. O cérebro pode controlar a temperatura corporal e a respiração rítmica.",
+      description: "O feto pesa em torno de 1.600g, unhas, digitais, néfrons e reflexos bem desenvolvidos. Aparentemente, o feto ouve sons in utero.  ",
       icon: <Brain size={16} />
     },
     {
       week: "Semanas 33-36",
       title: "Preparação para o nascimento",
-      description: "Os pulmões estão quase completamente desenvolvidos. O feto geralmente se posiciona de cabeça para baixo em preparação para o nascimento.",
+      description: "O feto pesa em média 2.600g. A sucção e a deglutição tornam-se coordenadas e há cartilagem nas orelhas. Reflexos de preensão e sucção bastante fortes.",
       icon: <Baby size={16} />
     },
     {
       week: "Semanas 37-40",
       title: "Termo completo",
-      description: "O feto é considerado a termo. Os sistemas corporais estão maduros e prontos para funcionar independentemente após o nascimento.",
+      description: " A pele está lisa e o tórax saliente. O feto está pronto para a vida extra uterina. ",
       icon: <CheckCircle size={16} />
     }
   ];
@@ -340,27 +335,29 @@ const DesenvolvimentoEmbrionario = () => {
             <p className="text-gray-600 mb-8">As primeiras 8 semanas de desenvolvimento, quando ocorre a formação dos principais órgãos e sistemas.</p>
             
             <div className="relative" ref={timelineRef}>
-              {/* Timeline line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-200 h-full hidden md:block"></div>
+              {/* Timeline line - visível apenas em desktop */}
+              <div className="absolute left-0 md:left-1/2 top-0 bottom-0 transform md:-translate-x-12 -translate-x-8 w-1 bg-gray-200 h-full z-0"></div>
               
-              {/* Timeline progress */}
+              {/* Timeline progress - visível apenas em desktop */}
               <motion.div 
-                className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-brand-400 to-purple-400 hidden md:block"
+                className="absolute left-0 md:left-1/2 top-0 transform md:-translate-x-12 -translate-x-8 w-1 bg-gradient-to-b from-brand-400 to-purple-400 z-0"
                 style={{ height: progressHeight }}
               />
               
               {/* Timeline events */}
-              {embryonicDevelopment.map((event, index) => (
-                <TimelineEvent 
-                  key={event.week}
-                  week={event.week}
-                  title={event.title}
-                  description={event.description}
-                  delay={index * 0.1}
-                  align={index % 2 === 0 ? "left" : "right"}
-                  icon={event.icon}
-                />
-              ))}
+              <div className="w-full mx-auto">
+                {embryonicDevelopment.map((event, index) => (
+                  <TimelineEvent 
+                    key={event.week}
+                    week={event.week}
+                    title={event.title}
+                    description={event.description}
+                    delay={index * 0.1}
+                    align="left"
+                    icon={event.icon}
+                  />
+                ))}
+              </div>
             </div>
           </AnimatedSection>
         </div>
@@ -373,20 +370,22 @@ const DesenvolvimentoEmbrionario = () => {
             
             <div className="relative">
               {/* Timeline line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-200 h-full hidden md:block"></div>
+              <div className="absolute left-0 md:left-1/2 top-0 bottom-0 transform md:-translate-x-12 -translate-x-8 w-1 bg-gray-200 h-full z-0"></div>
               
               {/* Timeline events */}
-              {fetalDevelopment.map((event, index) => (
-                <TimelineEvent 
-                  key={event.week}
-                  week={event.week}
-                  title={event.title}
-                  description={event.description}
-                  delay={index * 0.1}
-                  align={index % 2 === 0 ? "right" : "left"}
-                  icon={event.icon}
-                />
-              ))}
+              <div className="w-full mx-auto">
+                {fetalDevelopment.map((event, index) => (
+                  <TimelineEvent 
+                    key={event.week}
+                    week={event.week}
+                    title={event.title}
+                    description={event.description}
+                    delay={index * 0.1}
+                    align="left"
+                    icon={event.icon}
+                  />
+                ))}
+              </div>
             </div>
           </AnimatedSection>
         </div>
