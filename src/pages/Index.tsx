@@ -126,6 +126,8 @@ const Index = () => {
                     Fazer Simulado
                   </AnimatedButton>
                 </motion.div>
+
+                
                 
                 <motion.div
                   whileHover={{ scale: 1.05 }}
@@ -142,7 +144,36 @@ const Index = () => {
                     Desenvolvimento Embrionário
                   </AnimatedButton>
                 </motion.div>
+                <AnimatedButton 
+                    to="/apgar" 
+                    variant="outline"
+                    size="lg"
+                    icon={<Stethoscope size={18} />}
+                    className="border-white text-white hover:bg-white/20 backdrop-blur-sm"
+                  >
+                    Apgar
+                  </AnimatedButton>
+
+                  <AnimatedButton 
+                    to="/utineo" 
+                    variant="outline"
+                    size="lg"
+                    icon={<Stethoscope size={18} />}
+                    className="border-white text-white hover:bg-white/20 backdrop-blur-sm"
+                  >
+                    UTINeo
+                  </AnimatedButton>
+                  <AnimatedButton 
+                    to="/patologias-neonatais" 
+                    variant="outline"
+                    size="lg"
+                    icon={<Stethoscope size={18} />}
+                    className="border-white text-white hover:bg-white/20 backdrop-blur-sm"
+                  >
+                    Patologias
+                  </AnimatedButton>
               </motion.div>
+              
               
               <motion.div
                 initial={{ opacity: 0 }}
